@@ -1,23 +1,23 @@
 {% extends 'layout/layout.twig' %}
 
+{% block title %}Unreleased Branches{% endblock title %}
+
 {% block content %}
+    <section class="row branch">
+        <section class="column center"><strong>Status</strong></section>
+        <section class="two column"><strong>Name</strong></section>
+        <section class="column center"><strong>Team</strong></section>
+        <section class="column center"><strong>Sprints</strong></section>
+        <section class="column center"><strong>Date</strong></section>
+    </section>
+
     {% for branch in branches %}
         <section class="row branch">
-            <section class="column center">
-                {{ branch.status }}
-            </section>
-            <section class="two column">
-                {{ branch.name }}
-            </section>
-            <section class="column center">
-                {{ branch.team }}
-            </section>
-            <section class="column center">
-                {{ branch.sprints|join(', ') }}
-            </section>
-            <section class="column center">
-                {{ branch.date }}
-            </section>
+            <section class="column center">{{ branch.status }}</section>
+            <section class="two column">{{ branch.name }}</section>
+            <section class="column center">{{ branch.team }}</section>
+            <section class="column center">{{ branch.sprints|join(', ') }}</section>
+            <section class="column center">{{ branch.date }}</section>
         </section>
     {% endfor %}
 {% endblock content %}
