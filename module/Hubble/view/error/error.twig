@@ -1,0 +1,25 @@
+{% extends 'layout/layout.twig' %}
+
+{% block content %}
+    <h2>Oh no, you broke it :(</h2>
+    <h3>{{ message }}</h3>
+
+    {% if exception %}
+        <dl>
+            <dt>File:</dt>
+            <dd>
+                <pre>{{ exception.getFile() }}:{{ exception.getLine() }}</pre>
+            </dd>
+            <dt>Message:</dt>
+            <dd>
+                <pre>{{ exception.getMessage() }}</pre>
+            </dd>
+            <dt>Stack trace:</dt>
+            <dd>
+                <pre>{{ exception.getTraceAsString() }}</pre>
+            </dd>
+        </dl>
+    {% else %}
+        <p>No exception - you broke it a lot</p>
+    {% endif %}
+{% endblock content %}
