@@ -24,8 +24,11 @@
 
                 <nav>
                     <ul>
-                        <li><a href="#"><strong>Unreleased</strong></a></li>
-                        <li><a href="#">Deployed</a></li>
+                        {# TODO: fix this mess #}
+                        {% set url = serverUrl(true)|split('/') %}
+                        {% set action = url|last %}
+                        <li><a href="{{ basePath() }}/unreleased" {{ (action == 'unreleased' or action == '') ? 'class="active"' }}>Unreleased</a></li>
+                        <li><a href="{{ basePath() }}/deployed" {{ action == 'deployed' ? 'class="active"'}}>Deployed</a></li>
                     </ul>
                 </nav>
             </header>

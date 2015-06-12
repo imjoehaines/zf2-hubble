@@ -1,6 +1,6 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Unreleased Branches{% endblock title %}
+{% block title %}{{ title|default('Hubble') }}{% endblock title %}
 
 {% block content %}
     <section class="row branch">
