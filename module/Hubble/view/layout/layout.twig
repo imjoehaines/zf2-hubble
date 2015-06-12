@@ -9,10 +9,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         {% block meta %}{% endblock meta %}
 
-        <link href="assets/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
+        <link href="{{ basePath() }}/assets/images/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon">
 
-        <link href="assets/css/marx.min.css" media="screen" rel="stylesheet" type="text/css">
-        <link href="assets/css/style.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="{{ basePath() }}/assets/css/marx.min.css" media="screen" rel="stylesheet" type="text/css">
+        <link href="{{ basePath() }}/assets/css/style.css" media="screen" rel="stylesheet" type="text/css">
         {% block style %}{% endblock style %}
 
         {% block script %}{% endblock script %}
@@ -20,7 +20,7 @@
     <body>
         <main>
             <header>
-                <h1>Hubble</h1>
+                <h1><a href="{{ basePath() }}">Hubble</a></h1>
 
                 <nav>
                     <ul>
