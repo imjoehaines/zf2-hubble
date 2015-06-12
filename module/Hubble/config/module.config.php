@@ -10,20 +10,19 @@
 return array(
     'router' => array(
         'routes' => array(
-             'hubble' => array(
-                 'type'    => 'segment',
-                 'options' => array(
-                     'route'    => '/[:action]',
-                     'constraints' => array(
-                         'id'     => '[0-9]+',
-                     ),
-                     'defaults' => array(
-                         'controller' => 'Hubble\Controller\BranchList',
-                         'action'     => 'unreleased',
-                     ),
-                 ),
-             ),
-
+            'hubble' => array(
+                'type' => 'segment',
+                'options' => array(
+                    'route'    => '/[:action]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'Hubble\Controller\BranchList',
+                        'action' => 'all',
+                    ),
+                ),
+            ),
         ),
     ),
     'service_manager' => array(
@@ -50,6 +49,7 @@ return array(
             'layout/layout' => __DIR__ . '/../view/layout/layout.twig',
             'hubble/branch-list/unreleased' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/deployed' => __DIR__ . '/../view/hubble/branchlist/index.twig',
+            'hubble/branch-list/all' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'error/404' => __DIR__ . '/../view/error/404.twig',
             'error/index' => __DIR__ . '/../view/error/error.twig',
         ),
