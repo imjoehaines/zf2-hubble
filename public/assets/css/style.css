@@ -13,8 +13,8 @@
         flex-basis: 0;
     }
     .two.column {
-        -webkit-flex-grow: 0.5;
-        flex-grow: 0.5;
+        -webkit-flex-grow: 2;
+        flex-grow: 2;
     }
     .column.center {
         text-align: center;
