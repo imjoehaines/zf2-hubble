@@ -1,0 +1,6 @@
+{
+    "require": {
+        "zendframework/zendframework": "~2.5",
+        "zf-commons/zfc-twig": "~1.2"
+    }
+}

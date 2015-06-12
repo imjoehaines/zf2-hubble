@@ -1,0 +1,23 @@
+{% extends 'layout/layout.twig' %}
+
+{% block content %}
+    {% for branch in branches %}
+        <section class="row branch">
+            <section class="two column center">
+                {{ branch.status }}
+            </section>
+            <section class="column">
+                {{ branch.name }}
+            </section>
+            <section class="two column center">
+                {{ branch.team }}
+            </section>
+            <section class="two column center">
+                {{ branch.sprints|join(', ') }}
+            </section>
+            <section class="two column center">
+                {{ branch.date }}
+            </section>
+        </section>
+    {% endfor %}
+{% endblock content %}

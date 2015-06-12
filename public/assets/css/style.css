@@ -1,0 +1,36 @@
+@media (min-width: 30em) {
+    .row {
+        /* safari needs webkit prefixes :( */
+        display: -webkit-flex;
+        -webkit-flex-wrap: nowrap;
+        display: flex;
+        flex-wrap: nowrap;
+    }
+    .column {
+        -webkit-flex-grow: 1;
+        flex-grow: 1;
+        -webkit-flex-basis: 0;
+        flex-basis: 0;
+    }
+    .two.column {
+        -webkit-flex-grow: 0.5;
+        flex-grow: 0.5;
+    }
+    .column.center {
+        text-align: center;
+    }
+}
+
+header h1 {
+    border: none;
+    float: left;
+}
+
+header nav {
+    padding-top: 2rem;
+    float: right;
+}
+
+.branch {
+    margin: 1rem 0;
+}
