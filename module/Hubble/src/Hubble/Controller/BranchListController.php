@@ -11,8 +11,6 @@ namespace Hubble\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Doctrine\DBAL\Types\Type;
-use Doctrine\Common\Collections\Collection;
 use Hubble\Model\BranchModel;
 
 class BranchListController extends AbstractActionController

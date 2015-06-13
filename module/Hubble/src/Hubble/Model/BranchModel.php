@@ -3,8 +3,6 @@
 namespace Hubble\Model;
 
 use Doctrine\DBAL\Types\Type;
-use Doctrine\Common\Collections\Collection;
-use Hubble\Entity\Branch;
 
 class BranchModel
 {
