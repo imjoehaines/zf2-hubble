@@ -35,6 +35,19 @@ return array(
                             ),
                         ),
                     ),
+                    'branch' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route'    => 'branch[/:action]',
+                            'constraints' => array(
+                                'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'controller' => 'Hubble\Controller\Branch',
+                                'action' => 'new',
+                            ),
+                        ),
+                    ),
                 ),
             ),
         ),
@@ -44,13 +57,11 @@ return array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
         ),
-        'aliases' => array(
-            'translator' => 'MvcTranslator',
-        ),
     ),
     'controllers' => array(
         'invokables' => array(
-            'Hubble\Controller\BranchList' => 'Hubble\Controller\BranchListController'
+            'Hubble\Controller\BranchList' => 'Hubble\Controller\BranchListController',
+            'Hubble\Controller\Branch' => 'Hubble\Controller\BranchController',
         ),
     ),
     'view_manager' => array(
@@ -64,7 +75,7 @@ return array(
             'hubble/branch-list/unreleased' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/deployed' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/all' => __DIR__ . '/../view/hubble/branchlist/index.twig',
-            'hubble/branch-list/new-branch' => __DIR__ . '/../view/hubble/branchlist/new-branch.twig',
+            'hubble/branch/new' => __DIR__ . '/../view/hubble/branch/new-branch.twig',
             'partial/pagination' => __DIR__ . '/../view/hubble/partial/pagination.phtml',
             'error/404' => __DIR__ . '/../view/error/404.twig',
             'error/index' => __DIR__ . '/../view/error/error.twig',
