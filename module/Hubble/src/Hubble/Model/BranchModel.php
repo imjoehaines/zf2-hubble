@@ -17,7 +17,8 @@ class BranchModel
     }
 
     /**
-     * Gets all branches
+     * Gets all branches, ordered by created DESC so newest branches are
+     * most visible
      * @return array
      */
     public function getAllBranches()
@@ -42,7 +43,7 @@ class BranchModel
         $repository = $this->objectManager->getRepository('\Hubble\Entity\Branch');
 
         $queryBuilder = $this->objectManager->createQueryBuilder();
-        $branches = $queryBuilder->select(array('partial b.{id,status,name,team,sprints,created}'))
+        $branches = $queryBuilder->select('b')
             ->from('\Hubble\Entity\Branch', 'b')
             ->where('b.status != :deployedStatus')
             ->orderBy('b.created', 'ASC')
