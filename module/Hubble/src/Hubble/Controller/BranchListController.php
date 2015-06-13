@@ -11,10 +11,25 @@ namespace Hubble\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
+use Zend\Paginator\Paginator;
+use Zend\Paginator\Adapter\ArrayAdapter;
 use Hubble\Model\BranchModel;
 
 class BranchListController extends AbstractActionController
 {
+    protected function constructPaginatedView($branches)
+    {
+        $paginator = new Paginator(new ArrayAdapter($branches));
+        $paginator->setDefaultItemCountPerPage(10);
+        $paginator->setCurrentPageNumber($this->params()->fromRoute('page', 1));
+
+        return new ViewModel(array(
+            'title' => 'All Branches',
+            'branches' => $paginator,
+            'actionName' => $this->params()->fromRoute('action'),
+        ));
+    }
+
     /**
      * Action to get all branches
      * @return ViewModel
@@ -25,10 +40,7 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getAllBranches();
 
-        return new ViewModel(array(
-            'title' => 'All Branches',
-            'branches' => $branches,
-        ));
+        return $this->constructPaginatedView($branches);
     }
 
     /**
@@ -41,10 +53,7 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getUnreleasedBranches();
 
-        return new ViewModel(array(
-            'title' => 'Unreleased Branches',
-            'branches' => $branches,
-        ));
+        return $this->constructPaginatedView($branches);
     }
 
     /**
@@ -57,9 +66,6 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getDeployedBranches();
 
-        return new ViewModel(array(
-            'title' => 'Deployed Branches',
-            'branches' => $branches,
-        ));
+        return $this->constructPaginatedView($branches);
     }
 }

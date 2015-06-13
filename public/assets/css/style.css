@@ -19,6 +19,9 @@
     .column.center {
         text-align: center;
     }
+    .column.right {
+        text-align: right;
+    }
 }
 
 header h1 {
@@ -41,4 +44,17 @@ nav .active {
 
 .branch {
     margin: 1rem 0;
+}
+
+.pagination-control {
+    margin: 3rem 0;
+}
+
+.pagination-control .disabled {
+    opacity: 0.66;
+    cursor: not-allowed;
+}
+
+.pagination-item {
+    padding: 0 0.2rem;
 }

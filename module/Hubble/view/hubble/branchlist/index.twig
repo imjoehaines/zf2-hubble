@@ -20,4 +20,8 @@
             <section class="column center">{{ branch.created|date('jS F') }}</section>
         </section>
     {% endfor %}
+
+    <section class="row pagination-control">
+        {{ paginationControl(branches, 'Elastic', 'partial/pagination', {'actionName': actionName})|raw }}
+    </section>
 {% endblock content %}

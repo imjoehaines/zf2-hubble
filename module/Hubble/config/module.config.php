@@ -24,9 +24,10 @@ return array(
                     'filters' => array(
                         'type' => 'segment',
                         'options' => array(
-                            'route'    => 'branches[/:action]',
+                            'route'    => 'branches[/:action][/page/:page]',
                             'constraints' => array(
                                 'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'page' => '[0-9]*',
                             ),
                             'defaults' => array(
                                 'controller' => 'Hubble\Controller\BranchList',
@@ -63,6 +64,7 @@ return array(
             'hubble/branch-list/unreleased' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/deployed' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/all' => __DIR__ . '/../view/hubble/branchlist/index.twig',
+            'partial/pagination' => __DIR__ . '/../view/hubble/partial/pagination.phtml',
             'error/404' => __DIR__ . '/../view/error/404.twig',
             'error/index' => __DIR__ . '/../view/error/error.twig',
         ),
