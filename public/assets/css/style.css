@@ -51,12 +51,16 @@ nav .active {
 }
 
 .branch .column, .branch-headings .column {
+    padding: 1rem;
+}
+
+.branch .branch-status {
+    color: white;
     padding: 1rem 0;
 }
 
-.branch-status {
+.branch-status-created {
     background: black;
-    color: white;
 }
 
 .branch-status-in-progress {
