@@ -16,6 +16,10 @@
         -webkit-flex-grow: 2;
         flex-grow: 2;
     }
+    .half.column {
+        -webkit-flex-grow: 0.5;
+        flex-grow: 0.5;
+    }
     .column.center {
         text-align: center;
     }
@@ -30,13 +34,21 @@ main {
     overflow: hidden;
 }
 
+header {
+    margin-top: 2rem;
+}
+
 header h1 {
     border: none;
     float: left;
+    margin-top: 0;
 }
 
-header nav {
-    padding-top: 2rem;
+.add-branch {
+    margin-top: 0.5rem;
+}
+
+header nav ul {
     float: right;
 }
 
@@ -75,17 +87,18 @@ nav .active {
 }
 
 .branch-status-ready-for-master {
-    background: #6e5494;
+    background: #4078c0;
     color: white;
 }
 
 .branch-status-merged-to-master {
-    background: #4078c0;
+    background: #6e5494;
     color: white;
 }
 
 .branch-status-deployed {
     background: #6cc644;
+    color: white;
 }
 
 .pagination-control {
@@ -127,4 +140,13 @@ fieldset label {
 
 fieldset label input {
     margin-right: 0.5rem;
+}
+
+button, input[type="submit"] {
+    text-transform: none;
+}
+
+button.primary:hover {
+    background: #6cc644;
+    border-color: #6cc644;
 }

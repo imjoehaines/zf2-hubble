@@ -19,10 +19,16 @@
     </head>
     <body>
         <main>
-            <header>
-                <h1><a href="{{ basePath() }}">Hubble</a></h1>
+            <header class="row">
+                <h1 class="half column"><a href="{{ basePath() }}">Hubble</a></h1>
 
-                <nav>
+                <span class="column add-branch">
+                    <a href="{{ basePath() }}/branch/new">
+                        <button class="primary">Add New Branch</button>
+                    </a>
+                </span>
+
+                <nav class="two column">
                     <ul>
                         {# TODO: fix this mess #}
                         {% set url = serverUrl(true)|split('/') %}
