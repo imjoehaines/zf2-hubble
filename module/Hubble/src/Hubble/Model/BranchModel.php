@@ -24,11 +24,19 @@ class BranchModel
      */
     public function getAllBranches()
     {
-        return $this->objectManager->getRepository('\Hubble\Entity\Branch')->findAll();
+        $repository = $this->objectManager->getRepository('\Hubble\Entity\Branch');
+
+        $branches = $repository->findBy(
+            array(),
+            array('created' => 'DESC')
+        );
+
+        return $branches;
     }
 
     /**
-     * Gets unreleased branches
+     * Gets unreleased branches, ordered by created ASC so oldest branches are
+     * most visible
      * @return ViewModel
      */
     public function getUnreleasedBranches()
@@ -38,8 +46,9 @@ class BranchModel
         $queryBuilder = $this->objectManager->createQueryBuilder();
         $branches = $queryBuilder->select(array('partial b.{id,status,name,team,sprints,created}'))
             ->from('\Hubble\Entity\Branch', 'b')
-            ->where('b.status != :status')
-            ->setParameter('status', 'deployed')
+            ->where('b.status != :deployedStatus')
+            ->orderBy('b.created', 'ASC')
+            ->setParameter('deployedStatus', 'deployed')
             ->getQuery()
             ->getResult();
 
@@ -47,14 +56,18 @@ class BranchModel
     }
 
     /**
-     * Gets deployed branches
+     * Gets deployed branches, ordered by created DESC so newest branches are
+     * most visible
      * @return ViewModel
      */
     public function getDeployedBranches()
     {
         $repository = $this->objectManager->getRepository('\Hubble\Entity\Branch');
 
-        $branches = $repository->findBy(array('status' => 'deployed'));
+        $branches = $repository->findBy(
+            array('status' => 'deployed'),
+            array('created' => 'DESC')
+        );
 
         return $branches;
     }

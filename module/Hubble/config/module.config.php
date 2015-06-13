@@ -16,7 +16,7 @@ return array(
                     'route' => '/',
                     'defaults' => array(
                         'controller' => 'Hubble\Controller\BranchList',
-                        'action' => 'all',
+                        'action' => 'unreleased',
                     ),
                 ),
                 'may_terminate' => true,
@@ -30,7 +30,7 @@ return array(
                             ),
                             'defaults' => array(
                                 'controller' => 'Hubble\Controller\BranchList',
-                                'action' => 'all',
+                                'action' => 'unreleased',
                             ),
                         ),
                     ),

@@ -26,11 +26,10 @@ class BranchListController extends AbstractActionController
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getAllBranches();
-        $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
             'title' => 'All Branches',
-            'branches' => $formattedBranches,
+            'branches' => $branches,
         ));
     }
 
@@ -43,11 +42,10 @@ class BranchListController extends AbstractActionController
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getUnreleasedBranches();
-        $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
             'title' => 'Unreleased Branches',
-            'branches' => $formattedBranches,
+            'branches' => $branches,
         ));
     }
 
@@ -60,33 +58,10 @@ class BranchListController extends AbstractActionController
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getDeployedBranches();
-        $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
             'title' => 'Deployed Branches',
-            'branches' => $formattedBranches,
+            'branches' => $branches,
         ));
-    }
-
-    /**
-     * Converts a given list of branches into the format usable by the view
-     * @param  array $branches
-     * @return array
-     */
-    protected function formatBranchList(array $branches)
-    {
-        $formattedBranches = array();
-
-        foreach ($branches as $branch) {
-            $formattedBranches[] = array(
-                'status' => $branch->getStatus(),
-                'name' => $branch->getName(),
-                'team' => $branch->getTeam(),
-                'sprints' => $branch->getSprints(),
-                'date' => $branch->getCreated()->format('Y/m/d'),
-            );
-        }
-
-        return $formattedBranches;
     }
 }
