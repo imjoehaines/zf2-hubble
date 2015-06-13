@@ -1,6 +1,11 @@
 {
     "require": {
         "zendframework/zendframework": "~2.5",
-        "zf-commons/zfc-twig": "~1.2"
+        "zf-commons/zfc-twig": "~1.2",
+        "doctrine/doctrine-orm-module": "0.9.*",
+        "doctrine/doctrine-module": "0.8.*"
+    },
+    "require-dev": {
+        "zendframework/zend-developer-tools": "dev-master"
     }
 }

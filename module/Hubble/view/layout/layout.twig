@@ -27,9 +27,9 @@
                         {# TODO: fix this mess #}
                         {% set url = serverUrl(true)|split('/') %}
                         {% set action = url|last %}
-                        <li><a href="{{ basePath() }}/all" {{ (action == 'all' or action == '') ? 'class="active"' }}>All</a></li>
-                        <li><a href="{{ basePath() }}/unreleased" {{ action == 'unreleased' ? 'class="active"' }}>Unreleased</a></li>
-                        <li><a href="{{ basePath() }}/deployed" {{ action == 'deployed' ? 'class="active"'}}>Deployed</a></li>
+                        <li><a href="{{ basePath() }}/branches/all" {{ (action == 'all' or action == '' or action =='branches') ? 'class="active"' }}>All</a></li>
+                        <li><a href="{{ basePath() }}/branches/unreleased" {{ action == 'unreleased' ? 'class="active"' }}>Unreleased</a></li>
+                        <li><a href="{{ basePath() }}/branches/deployed" {{ action == 'deployed' ? 'class="active"'}}>Deployed</a></li>
                     </ul>
                 </nav>
             </header>
