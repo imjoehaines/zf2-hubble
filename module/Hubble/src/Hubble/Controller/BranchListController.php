@@ -20,33 +20,16 @@ use Hubble\Entity\Branch;
 
 class BranchListController extends AbstractActionController
 {
-    protected function constructPaginatedView($branches)
+    protected function constructPaginatedView($branches, $title)
     {
         $paginator = new Paginator(new ArrayAdapter($branches));
         $paginator->setDefaultItemCountPerPage(10);
         $paginator->setCurrentPageNumber($this->params()->fromRoute('page', 1));
 
         return new ViewModel(array(
-            'title' => 'All Branches',
+            'title' => $title,
             'branches' => $paginator,
             'actionName' => $this->params()->fromRoute('action')
-        ));
-    }
-
-    public function newBranchAction()
-    {
-        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $branch = new Branch();
-        $builder = new AnnotationBuilder($objectManager);
-
-        $form = $builder->createForm($branch);
-        $form->setHydrator(new DoctrineHydrator($objectManager,'\Hubble\Entity\Branch'));
-        $form->bind($branch);
-
-        return new ViewModel(array(
-            'title' => 'All Branches',
-            'actionName' => $this->params()->fromRoute('action'),
-            'branchForm' => $form
         ));
     }
 
@@ -60,7 +43,7 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getAllBranches();
 
-        return $this->constructPaginatedView($branches);
+        return $this->constructPaginatedView($branches, 'All Branches');
     }
 
     /**
@@ -73,7 +56,7 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getUnreleasedBranches();
 
-        return $this->constructPaginatedView($branches);
+        return $this->constructPaginatedView($branches, 'Unreleased Branches');
     }
 
     /**
@@ -86,6 +69,6 @@ class BranchListController extends AbstractActionController
         $branchModel = new BranchModel($objectManager);
         $branches = $branchModel->getDeployedBranches();
 
-        return $this->constructPaginatedView($branches);
+        return $this->constructPaginatedView($branches, 'Deployed Branches');
     }
 }
