@@ -13,16 +13,10 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\Common\Collections\Collection;
-use Hubble\Entity\Branch;
+use Hubble\Model\BranchModel;
 
 class BranchListController extends AbstractActionController
 {
-    public function __construct()
-    {
-        Type::addType('text_array', "Doctrine\\DBAL\\PostgresTypes\\TextArrayType");
-        Type::addType('int_array', "Doctrine\\DBAL\\PostgresTypes\\IntArrayType");
-    }
-
     /**
      * Action to get all branches
      * @return ViewModel
@@ -30,8 +24,8 @@ class BranchListController extends AbstractActionController
     public function allAction()
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-
-        $branches = $objectManager->getRepository('\Hubble\Entity\Branch')->findAll();
+        $branchModel = new BranchModel($objectManager);
+        $branches = $branchModel->getAllBranches();
         $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
@@ -47,16 +41,8 @@ class BranchListController extends AbstractActionController
     public function unreleasedAction()
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $repository = $objectManager->getRepository('\Hubble\Entity\Branch');
-
-        $queryBuilder = $objectManager->createQueryBuilder();
-        $branches = $queryBuilder->select(array('partial b.{id,status,name,team,sprints,created}'))
-            ->from('\Hubble\Entity\Branch', 'b')
-            ->where('b.status != :status')
-            ->setParameter('status', 'deployed')
-            ->getQuery()
-            ->getResult();
-
+        $branchModel = new BranchModel($objectManager);
+        $branches = $branchModel->getUnreleasedBranches();
         $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
@@ -72,9 +58,8 @@ class BranchListController extends AbstractActionController
     public function deployedAction()
     {
         $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
-        $repository = $objectManager->getRepository('\Hubble\Entity\Branch');
-
-        $branches = $repository->findBy(array('status' => 'deployed'));
+        $branchModel = new BranchModel($objectManager);
+        $branches = $branchModel->getDeployedBranches();
         $formattedBranches = $this->formatBranchList($branches);
 
         return new ViewModel(array(
