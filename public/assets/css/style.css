@@ -24,6 +24,10 @@
     }
 }
 
+main {
+    max-width: 100rem;
+}
+
 header h1 {
     border: none;
     float: left;
@@ -42,8 +46,41 @@ nav .active {
     font-weight: bold;
 }
 
-.branch {
-    margin: 1rem 0;
+.branch-headings {
+    margin-bottom: 1rem;
+}
+
+.branch .column, .branch-headings .column {
+    padding: 1rem 0;
+}
+
+.branch-status {
+    background: black;
+    color: white;
+}
+
+.branch-status-in-progress {
+    background: red;
+}
+
+.branch-status-in-review {
+    background: orange;
+}
+
+.branch-status-ready-for-master {
+    background: cornflowerblue;
+}
+
+.branch-status-merged-to-master {
+    background: blue;
+}
+
+.branch-status-deployed {
+    background: green;
+}
+
+.branch-status-deprecated {
+    background: silver;
 }
 
 .pagination-control {
