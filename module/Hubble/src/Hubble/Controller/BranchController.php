@@ -11,11 +11,8 @@ namespace Hubble\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
-use Zend\Paginator\Paginator;
-use Zend\Paginator\Adapter\ArrayAdapter;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
-use Hubble\Model\BranchModel;
 use Hubble\Entity\Branch;
 
 class BranchController extends AbstractActionController
