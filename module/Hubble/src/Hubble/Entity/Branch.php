@@ -1,6 +1,7 @@
 <?php
 namespace Hubble\Entity;
 
+use Zend\Form\Annotation;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\DBAL\Types\Type;
 
@@ -10,123 +11,165 @@ class Branch {
     * @ORM\Id
     * @ORM\GeneratedValue
     * @ORM\Column(type="integer")
+    * @Annotation\Attributes({"type": "hidden"})
     */
     protected $id;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Name"})
      */
     protected $name;
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('sprint', 'support', 'other')")
+     * @Annotation\Type("Zend\Form\Element\Select")
+     * @Annotation\Options({"label": "Type", "value_options": {"sprint": "Sprint", "support": "Support", "other": "Other"}})
      */
     protected $type;
 
     /**
      * @ORM\Column(type="int_array")
+     * @Annotation\Exclude() TODO: fix this
      */
     protected $task_numbers;
 
     /**
      * @ORM\Column(type="int_array")
+     * @Annotation\Exclude() TODO: fix this
      */
     protected $sprints;
 
     /**
      * @ORM\Column(type="text")
+     * @Annotation\Options({"label": "Description", "class": "50"})
+     * @Annotation\Attributes({"cols": "100"})
      */
     protected $description;
 
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('Alpha Team', 'IPAs and APIs', 'Astrofan')")
+     * @Annotation\Type("Zend\Form\Element\Select")
+     * @Annotation\Options({"label": "Team", "value_options": {"Alpha Team": "Alpha Team", "IAPs and APIs": "IAPs and APIs", "Astrofan": "Astrofan"}})
      */
     protected $team;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Annotation\Exclude()
      */
     protected $created;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('deprecated', 'created', 'deployed', 'mergedToMaster', 'readyForMaster', 'prepareForMaster', 'inReview', 'readyForReview', 'inProgress')")
+     * @ORM\Column(type="string", columnDefinition="ENUM('Created', 'In Progress', 'In Review', 'Ready For Master', 'Merged To Master', 'Deployed', 'Deprecated')")
+     * @Annotation\Exclude()
      */
     protected $status;
 
     /**
      * @ORM\Column(type="text_array")
+     * @Annotation\Exclude() TODO: fix this
      */
     protected $contributors;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Radio")
+     * @Annotation\Options({"label": "Acceptance tested?",  "value_options": {"true": "Yes", "false": "No", "null": "N/A"}})
      */
     protected $acceptance_tests;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Who wrote them?"})
      */
     protected $acceptance_tests_author;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Radio")
+     * @Annotation\Options({"label": "Unit tested?",  "value_options": {"true": "Yes", "false": "No", "null": "N/A"}})
      */
     protected $unit_tests;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Who wrote them?"})
      */
     protected $unit_tests_author;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Radio")
+     * @Annotation\Options({"label": "Browser tested?",  "value_options": {"true": "Yes", "false": "No", "null": "N/A"}})
      */
     protected $browser_tests;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Who wrote them?"})
      */
     protected $browser_tests_author;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Ready for review"})
      */
     protected $ready_for_review;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Passed review"})
      */
     protected $passed_review;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Reviewer"})
      */
     protected $reviewer;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Passing on Bamboo"})
      */
     protected $passing_on_ci;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Merged to master"})
      */
     protected $merged_master;
 
     /**
      * @ORM\Column(type="string")
+     * @Annotation\Options({"label": "Master commit"})
      */
     protected $master_commit;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Is deployed"})
      */
     protected $is_deployed;
 
     /**
      * @ORM\Column(type="boolean")
+     * @Annotation\Type("Zend\Form\Element\Checkbox")
+     * @Annotation\Options({"label": "Is deprecated"})
      */
     protected $is_deprecated;
+
+    /**
+     * @Annotation\Type("Zend\Form\Element\Submit")
+     * @Annotation\Attributes({"value": "Add Branch"})
+     */
+    protected $submit;
 
     public function __construct()
     {

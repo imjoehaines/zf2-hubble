@@ -1,0 +1,9 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}{{ title|default('Hubble') }}{% endblock title %}
+
+{% block content %}
+    <h2>Add a new branch</h2>
+
+    {{ form(branchForm) }}
+{% endblock content %}

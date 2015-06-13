@@ -64,6 +64,7 @@ return array(
             'hubble/branch-list/unreleased' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/deployed' => __DIR__ . '/../view/hubble/branchlist/index.twig',
             'hubble/branch-list/all' => __DIR__ . '/../view/hubble/branchlist/index.twig',
+            'hubble/branch-list/new-branch' => __DIR__ . '/../view/hubble/branchlist/new-branch.twig',
             'partial/pagination' => __DIR__ . '/../view/hubble/partial/pagination.phtml',
             'error/404' => __DIR__ . '/../view/error/404.twig',
             'error/index' => __DIR__ . '/../view/error/error.twig',

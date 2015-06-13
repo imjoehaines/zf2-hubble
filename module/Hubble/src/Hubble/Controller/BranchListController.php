@@ -13,7 +13,10 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\Paginator\Paginator;
 use Zend\Paginator\Adapter\ArrayAdapter;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+use DoctrineORMModule\Form\Annotation\AnnotationBuilder;
 use Hubble\Model\BranchModel;
+use Hubble\Entity\Branch;
 
 class BranchListController extends AbstractActionController
 {
@@ -26,7 +29,24 @@ class BranchListController extends AbstractActionController
         return new ViewModel(array(
             'title' => 'All Branches',
             'branches' => $paginator,
+            'actionName' => $this->params()->fromRoute('action')
+        ));
+    }
+
+    public function newBranchAction()
+    {
+        $objectManager = $this->getServiceLocator()->get('Doctrine\ORM\EntityManager');
+        $branch = new Branch();
+        $builder = new AnnotationBuilder($objectManager);
+
+        $form = $builder->createForm($branch);
+        $form->setHydrator(new DoctrineHydrator($objectManager,'\Hubble\Entity\Branch'));
+        $form->bind($branch);
+
+        return new ViewModel(array(
+            'title' => 'All Branches',
             'actionName' => $this->params()->fromRoute('action'),
+            'branchForm' => $form
         ));
     }
 

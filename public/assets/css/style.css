@@ -26,6 +26,8 @@
 
 main {
     max-width: 100rem;
+    margin-bottom: 10rem;
+    overflow: hidden;
 }
 
 header h1 {
@@ -55,36 +57,35 @@ nav .active {
 }
 
 .branch .branch-status {
-    color: white;
     padding: 1rem 0;
 }
 
-.branch-status-created {
-    background: black;
+.branch.deprecated {
+    opacity: 0.66;
 }
 
 .branch-status-in-progress {
-    background: red;
+    background: #bd2c00;
+    color: white;
 }
 
 .branch-status-in-review {
-    background: orange;
+    background: #c9510c;
+    color: white;
 }
 
 .branch-status-ready-for-master {
-    background: cornflowerblue;
+    background: #6e5494;
+    color: white;
 }
 
 .branch-status-merged-to-master {
-    background: blue;
+    background: #4078c0;
+    color: white;
 }
 
 .branch-status-deployed {
-    background: green;
-}
-
-.branch-status-deprecated {
-    background: silver;
+    background: #6cc644;
 }
 
 .pagination-control {
@@ -98,4 +99,32 @@ nav .active {
 
 .pagination-item {
     padding: 0 0.2rem;
+}
+
+label {
+    display: block;
+    margin: 1rem 0;
+}
+
+label span {
+    margin-right: 1rem;
+}
+
+label input, label textarea {
+    line-height: 1.2;
+}
+
+fieldset legend {
+    border: none;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
+fieldset label {
+    display: inline;
+    margin-right: 2rem;
+}
+
+fieldset label input {
+    margin-right: 0.5rem;
 }
