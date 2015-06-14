@@ -50,7 +50,7 @@ class Branch {
     /**
      * @ORM\Column(type="string", columnDefinition="ENUM('Alpha Team', 'IPAs and APIs', 'Astrofan')")
      * @Annotation\Type("Zend\Form\Element\Select")
-     * @Annotation\Options({"label": "Team", "value_options": {"Alpha Team": "Alpha Team", "IAPs and APIs": "IAPs and APIs", "Astrofan": "Astrofan"}})
+     * @Annotation\Options({"label": "Team", "value_options": {"Alpha Team": "Alpha Team", "IPAs and APIs": "IPAs and APIs", "Astrofan": "Astrofan"}})
      */
     protected $team;
 
@@ -178,7 +178,7 @@ class Branch {
 
         // set some default values
         $this->created = new \DateTime();
-        $this->status = 'created';
+        $this->status = 'Created';
     }
 
     public function getId()

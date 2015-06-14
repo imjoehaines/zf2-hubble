@@ -68,7 +68,7 @@ nav .active {
     padding: 1rem;
 }
 
-.branch .branch-status {
+.branch .branch-status, .branch-headings .branch-status {
     padding: 1rem 0;
 }
 

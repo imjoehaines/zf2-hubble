@@ -27,6 +27,17 @@ class BranchController extends AbstractActionController
         $form->setHydrator(new DoctrineHydrator($objectManager,'\Hubble\Entity\Branch'));
         $form->bind($branch);
 
+        $request = $this->getRequest();
+        if ($request->isPost()) {
+            $form->setData($request->getPost());
+            if ($form->isValid()) {
+                $objectManager->persist($branch);
+                $objectManager->flush();
+
+                return $this->redirect()->toRoute('branches');
+            }
+        }
+
         return new ViewModel(array(
             'title' => 'Add New Branch',
             'actionName' => $this->params()->fromRoute('action'),

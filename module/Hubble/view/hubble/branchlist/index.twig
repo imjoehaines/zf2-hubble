@@ -4,7 +4,7 @@
 
 {% block content %}
     <section class="row branch-headings">
-        <section class="column center"><strong>Status</strong></section>
+        <section class="column center branch-status"><strong>Status</strong></section>
         <section class="two column"><strong>Name</strong></section>
         <section class="column center"><strong>Team</strong></section>
         <section class="column center"><strong>Sprints</strong></section>
@@ -15,7 +15,7 @@
         <section class="row branch {{ branch.status|lower|replace(' ', '-') }}">
             <section class="column center branch-status branch-status-{{ branch.status|lower|replace(' ', '-') }}">{{ branch.status|title }}</section>
             <section class="two column">{{ branch.name }}</section>
-            <section class="column center">{{ branch.team|title }}</section>
+            <section class="column center">{{ branch.team }}</section>
             <section class="column center">{{ branch.sprints|join(', ') }}</section>
             <section class="column center">{{ branch.created|date('jS F') }}</section>
         </section>
